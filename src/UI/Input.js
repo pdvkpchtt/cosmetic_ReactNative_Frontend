@@ -1,21 +1,27 @@
 import InsetShadow from "react-native-inset-shadow";
-import { TextInput, View } from "react-native";
-import { useRef } from "react";
+import { Pressable, TextInput, View } from "react-native";
+import { useRef, useState } from "react";
+import EyeIcon from "../UI/icons/EyeIcon";
 
-const Input = ({ paddingHorizontal = 20, value = "", onChange = () => {} }) => {
+const Input = ({
+  paddingHorizontal = 20,
+  value = "",
+  onChange = () => {},
+  placeholder = "placeholder",
+  passwordtype = false,
+}) => {
   const ref = useRef();
+  const [showpass, setshowpass] = useState(false);
 
   return (
     <InsetShadow
-      left={false}
-      bottom={false}
-      right={false}
       containerStyle={{
         borderRadius: 10,
         width: "100%",
         height: 42,
       }}
       onClick={() => ref.current.click()}
+      elevation={5}
     >
       <View
         style={{
@@ -29,17 +35,33 @@ const Input = ({ paddingHorizontal = 20, value = "", onChange = () => {} }) => {
         }}
       >
         <TextInput
+          secureTextEntry={!showpass && passwordtype}
+          placeholder={placeholder}
+          placeholderTextColor={"#919191"}
           ref={ref}
           style={{
             height: 42,
-            width: "100%",
+            flex: 1,
             fontSize: 15,
-            color: "#919191",
-            fontFamily: "Montserrat",
+            fontFamily: "Montserrat-Regular",
           }}
-          value={"sss"}
+          value={value}
           onChange={onChange}
         />
+
+        {passwordtype && (
+          <Pressable
+            onPress={() => setshowpass(!showpass)}
+            style={{
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <EyeIcon crossed={showpass} />
+          </Pressable>
+        )}
       </View>
     </InsetShadow>
   );

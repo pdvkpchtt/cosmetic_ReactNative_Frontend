@@ -1,7 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import Input from "./src/UI/Input";
 import { useFonts } from "expo-font";
+import { LinearGradient } from "expo-linear-gradient";
+import Auth from "./src/screens/Auth";
+import { Provider } from "react-redux";
+import { store } from "./src/store";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,11 +31,19 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Input />
+    <Provider store={store}>
+      <LinearGradient
+        style={styles.container}
+        colors={["#94F9FF", "#ECB989"]}
+        end={{ x: 1.2, y: 0.7 }}
+        start={{ x: 0, y: 0 }}
+        locations={[0.5, 0.99]}
+      >
+        <Auth />
 
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="dark" />
+      </LinearGradient>
+    </Provider>
   );
 }
 
@@ -34,7 +53,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
-    marginTop: 40,
-    paddingHorizontal: 50,
+    paddingTop: 40,
   },
 });
