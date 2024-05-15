@@ -182,6 +182,7 @@ const Profile = ({ navigation }) => {
             setiteminview(item.viewableItems[0].item.id);
           }}
           viewabilityConfig={viewabilityConfig}
+          overScrollMode="never"
         />
 
         <Paginator data={advice} iteminview={iteminview} />
