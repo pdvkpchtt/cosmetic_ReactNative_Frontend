@@ -1,10 +1,10 @@
 import Svg, { Path, Defs, Pattern, Use, Image, Circle } from "react-native-svg";
 
-function AvatarIcon() {
+function AvatarIcon({ size = 95 }) {
   return (
     <Svg
-      width={95}
-      height={95}
+      width={size}
+      height={size}
       viewBox="0 0 95 95"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

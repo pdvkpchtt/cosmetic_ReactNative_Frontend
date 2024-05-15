@@ -49,7 +49,7 @@ const CustomTabBar = ({
               colors={
                 activeIndex === key ? ["#fff", "#FFE0B8"] : ["#fff", "#fff"]
               }
-              locations={[0.2, 1]}
+              locations={[0.4, 1]}
             >
               {icons[key]}
             </LinearGradient>

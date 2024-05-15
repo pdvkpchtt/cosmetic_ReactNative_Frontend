@@ -31,5 +31,11 @@ export const profileSlice = createSlice({
         authorized: true,
       };
     },
+    logOut: (state, action) => {
+      return {
+        ...state,
+        authorized: false,
+      };
+    },
   },
 });

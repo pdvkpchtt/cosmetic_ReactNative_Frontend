@@ -12,7 +12,7 @@ const TabNavigator = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="HoProfileme"
+        initialRouteName="Profile"
         tabBar={(props) => <CustomTabBar {...props} />}
         screenOptions={{
           tabBarHideOnKeyboard: true,

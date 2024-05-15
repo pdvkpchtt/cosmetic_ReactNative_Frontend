@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import InsetShadow from "react-native-inset-shadow";
 
 const CustomButton = ({
   title = "title",
@@ -7,31 +8,34 @@ const CustomButton = ({
   moreStyle = {},
 }) => {
   return (
-    <Pressable
-      style={[
-        {
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: 42,
-          backgroundColor: backgroundColor,
-          borderRadius: 10,
-        },
-        moreStyle,
-      ]}
-      onPress={onClick}
-    >
-      <Text
-        style={{
-          fontFamily: "Montserrat-SemiBold",
-          fontSize: 15,
-          color: "#FFF",
-          width: "100%",
-          textAlign: "center",
-        }}
+    <Pressable onPress={onClick}>
+      <InsetShadow
+        top={false}
+        elevation={25}
+        containerStyle={[
+          {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 42,
+            backgroundColor: backgroundColor,
+            borderRadius: 10,
+          },
+          moreStyle,
+        ]}
       >
-        {title}
-      </Text>
+        <Text
+          style={{
+            fontFamily: "Montserrat-SemiBold",
+            fontSize: 15,
+            color: "#FFF",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
+          {title}
+        </Text>
+      </InsetShadow>
     </Pressable>
   );
 };
