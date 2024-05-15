@@ -15,8 +15,9 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { profileSlice } from "../store/profileSlice";
 import PlusInCircleIcon from "../UI/icons/PlusInCircleIcon";
 import * as ImagePicker from "expo-image-picker";
+import Layout from "../layout/Layout";
 
-const Auth = () => {
+const Auth = ({ navigation }) => {
   const [name, email, password, checkbox, password2, image] = useSelector(
     (state) => [
       state.profile.name,
@@ -52,178 +53,190 @@ const Auth = () => {
   };
 
   return (
-    <View
-      style={{
-        backgroundColor: "#fff",
-        borderRadius: 27,
-        paddingHorizontal: 28,
-        paddingVertical: 48,
-        marginHorizontal: 21,
-        display: "flex",
-        flexDirection: "column",
-        gap: 20,
-
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 3,
-      }}
-    >
-      <Text
-        style={{
-          fontSize: 24,
-          fontFamily: "Montserrat-Regular",
-          textAlign: "center",
-        }}
-      >
-        Регистрация
-      </Text>
-
-      <Pressable
-        style={{
-          width: 95,
-          height: 95,
-          marginHorizontal: "auto",
-          position: "relative",
-        }}
-        onPress={getPhoto}
-      >
-        {!image ? (
-          <AvatarIcon />
-        ) : (
-          <Image
-            style={{ width: 95, height: 95, borderRadius: 999 }}
-            source={{
-              uri: image,
-            }}
-          />
-        )}
-        <View style={{ position: "absolute", right: 0, bottom: 0 }}>
-          <PlusInCircleIcon />
-        </View>
-      </Pressable>
-
-      <Input
-        placeholder={"Имя"}
-        value={name}
-        onChange={(val) =>
-          dispatch(
-            profileSlice.actions.editProfileInfo({
-              image: image,
-              name: val.nativeEvent.text,
-              password: password,
-              password2: password2,
-              email: email,
-              checkbox: checkbox,
-            })
-          )
-        }
-      />
-      <Input
-        value={email}
-        onChange={(val) =>
-          dispatch(
-            profileSlice.actions.editProfileInfo({
-              image: image,
-              name: name,
-              password2: password2,
-              password: password,
-              email: val.nativeEvent.text,
-              checkbox: checkbox,
-            })
-          )
-        }
-        placeholder="E-mail"
-      />
-      <Input
-        value={password}
-        onChange={(val) =>
-          dispatch(
-            profileSlice.actions.editProfileInfo({
-              image: image,
-              name: name,
-              password2: password2,
-              password: val.nativeEvent.text,
-              email: email,
-              checkbox: checkbox,
-            })
-          )
-        }
-        placeholder="Пароль"
-        passwordtype
-      />
-      <Input
-        value={password2}
-        onChange={(val) =>
-          dispatch(
-            profileSlice.actions.editProfileInfo({
-              image: image,
-              name: name,
-              password: password,
-              password2: val.nativeEvent.text,
-              email: email,
-              checkbox: checkbox,
-            })
-          )
-        }
-        placeholder="Повторите пароль"
-        passwordtype
-      />
+    <Layout>
       <View
         style={{
-          width: "100%",
+          backgroundColor: "#fff",
+          borderRadius: 27,
+          paddingHorizontal: 28,
+          paddingVertical: 48,
+          marginHorizontal: 21,
           display: "flex",
-          flexDirection: "row",
-          gap: 12,
+          flexDirection: "column",
+          gap: 20,
+
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.22,
+          shadowRadius: 2.22,
+
+          elevation: 3,
         }}
       >
-        <CheckBox
-          onClick={() =>
+        <Text
+          style={{
+            fontSize: 24,
+            fontFamily: "Montserrat-Regular",
+            textAlign: "center",
+          }}
+        >
+          Регистрация
+        </Text>
+
+        <Pressable
+          style={{
+            width: 95,
+            height: 95,
+            marginHorizontal: "auto",
+            position: "relative",
+          }}
+          onPress={getPhoto}
+        >
+          {!image ? (
+            <AvatarIcon />
+          ) : (
+            <Image
+              style={{ width: 95, height: 95, borderRadius: 999 }}
+              source={{
+                uri: image,
+              }}
+            />
+          )}
+          <View style={{ position: "absolute", right: 0, bottom: 0 }}>
+            <PlusInCircleIcon />
+          </View>
+        </Pressable>
+
+        <Input
+          placeholder={"Имя"}
+          value={name}
+          onChange={(val) =>
+            dispatch(
+              profileSlice.actions.editProfileInfo({
+                image: image,
+                name: val.nativeEvent.text,
+                password: password,
+                password2: password2,
+                email: email,
+                checkbox: checkbox,
+              })
+            )
+          }
+        />
+        <Input
+          value={email}
+          onChange={(val) =>
+            dispatch(
+              profileSlice.actions.editProfileInfo({
+                image: image,
+                name: name,
+                password2: password2,
+                password: password,
+                email: val.nativeEvent.text,
+                checkbox: checkbox,
+              })
+            )
+          }
+          placeholder="E-mail"
+        />
+        <Input
+          value={password}
+          onChange={(val) =>
+            dispatch(
+              profileSlice.actions.editProfileInfo({
+                image: image,
+                name: name,
+                password2: password2,
+                password: val.nativeEvent.text,
+                email: email,
+                checkbox: checkbox,
+              })
+            )
+          }
+          placeholder="Пароль"
+          passwordtype
+        />
+        <Input
+          value={password2}
+          onChange={(val) =>
             dispatch(
               profileSlice.actions.editProfileInfo({
                 image: image,
                 name: name,
                 password: password,
-                password2: password2,
+                password2: val.nativeEvent.text,
                 email: email,
-                checkbox: !checkbox,
+                checkbox: checkbox,
               })
             )
           }
-          checked={checkbox}
+          placeholder="Повторите пароль"
+          passwordtype
         />
-
-        <Text
+        <View
           style={{
-            color: "#919191",
-            fontSize: 10,
-            fontFamily: "Montserrat-Regular",
-            flex: 1,
-            flexWrap: "wrap",
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            gap: 12,
           }}
         >
-          Я согласен(а) с условиями обработки персональных данных
+          <CheckBox
+            onClick={() =>
+              dispatch(
+                profileSlice.actions.editProfileInfo({
+                  image: image,
+                  name: name,
+                  password: password,
+                  password2: password2,
+                  email: email,
+                  checkbox: !checkbox,
+                })
+              )
+            }
+            checked={checkbox}
+          />
+
+          <Text
+            style={{
+              color: "#919191",
+              fontSize: 10,
+              fontFamily: "Montserrat-Regular",
+              flex: 1,
+              flexWrap: "wrap",
+            }}
+          >
+            Я согласен(а) с{" "}
+            <Text
+              style={{
+                textDecorationLine: "underline",
+              }}
+            >
+              условиями обработки персональных данных
+            </Text>
+          </Text>
+        </View>
+
+        <CustomButton
+          title="Зарегестрироваться"
+          onClick={() => navigation.navigate("Test")}
+        />
+        <Text
+          style={{
+            marginTop: -10,
+            fontFamily: "Montserrat-Regular",
+            textAlign: "center",
+            fontSize: 15,
+            color: "#919191",
+          }}
+        >
+          Уже есть аккаунт
         </Text>
       </View>
-
-      <CustomButton title="Зарегестрироваться" />
-      <Text
-        style={{
-          marginTop: -10,
-          fontFamily: "Montserrat-Regular",
-          textAlign: "center",
-          fontSize: 15,
-          color: "#919191",
-        }}
-      >
-        Уже есть аккаунт
-      </Text>
-    </View>
+    </Layout>
   );
 };
 
