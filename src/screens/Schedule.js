@@ -46,6 +46,15 @@ const times = [
 
 const Schedule = () => {
   const [monthstate, setmonthstate] = useState("Январь");
+  const [daystate, setdaystate] = useState(1);
+
+  let arr = [...Array(17)].map((i) => randomIntFromInterval(0, 1));
+
+  const [rand, setrand] = useState(arr);
+
+  function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   return (
     <Layout>
@@ -128,7 +137,17 @@ const Schedule = () => {
               }}
             >
               {month.map((item, key) => (
-                <Pressable onPress={() => setmonthstate(item)} key={key}>
+                <Pressable
+                  onPress={() => {
+                    setmonthstate(item);
+                    let arr = [...Array(17)].map((i) =>
+                      randomIntFromInterval(0, 1)
+                    );
+
+                    setrand(arr);
+                  }}
+                  key={key}
+                >
                   <LinearGradient
                     style={{
                       marginRight: 8,
@@ -166,16 +185,26 @@ const Schedule = () => {
               }}
             >
               {days.map((item, key) => (
-                <View
+                <Pressable
                   style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     borderRadius: 5,
-                    backgroundColor: "#F4F4F4",
+                    backgroundColor: daystate === item ? "#f4f4f4e9" : "#fff",
+                    borderWidth: 1,
+                    borderColor: "rgba(170,170,170,0.25)",
                     width: 25,
                     height: 25,
                     marginRight: key === days.length - 1 ? 30 : 8,
+                  }}
+                  onPress={() => {
+                    setdaystate(item);
+                    let arr = [...Array(17)].map((i) =>
+                      randomIntFromInterval(0, 1)
+                    );
+
+                    setrand(arr);
                   }}
                 >
                   <Text
@@ -189,7 +218,7 @@ const Schedule = () => {
                   >
                     {item}
                   </Text>
-                </View>
+                </Pressable>
               ))}
             </ScrollView>
           </View>
@@ -212,11 +241,10 @@ const Schedule = () => {
               <FlatList
                 data={times}
                 renderItem={({ item, index }) => (
-                  <ScheduleItem item={item} />
+                  <ScheduleItem item={item} random={rand[index]} />
                   // <TestItem item={item} index={index} />
                 )}
                 showsVerticalScrollIndicator={false}
-                pagingEnabled
                 bounces={false}
                 keyExtractor={(item) => item.id}
                 overScrollMode="never"

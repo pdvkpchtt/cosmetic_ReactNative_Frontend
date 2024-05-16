@@ -221,7 +221,7 @@ const Auth = ({ navigation }) => {
         </View>
 
         <CustomButton
-          title="Зарегестрироваться"
+          title="Зарегистрироваться"
           onClick={() => navigation.navigate("Test")}
         />
         <Text

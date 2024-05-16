@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import ElementSvg from "../UI/icons/ElementSvg";
 
-const ScheduleItem = ({ item = "" }) => {
+const ScheduleItem = ({ item = "", random = 0 }) => {
   return (
     <View
       style={{
@@ -33,14 +33,16 @@ const ScheduleItem = ({ item = "" }) => {
           {item}
         </Text>
 
-        {item === "7:00" ? (
-          <ElementSvg />
-        ) : item === "6:00" ? (
-          <>
-            <ElementSvg />
-            <ElementSvg />
-          </>
-        ) : null}
+        {[...Array(random)].map((i) => {
+          if (Math.random() < 0.8) return <ElementSvg />;
+          else
+            return (
+              <>
+                <ElementSvg />
+                <ElementSvg />
+              </>
+            );
+        })}
       </View>
       <View
         style={{

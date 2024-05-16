@@ -4,6 +4,9 @@ import { useFonts } from "expo-font";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
 import Handler from "./src/nav/Handler";
+import { LogBox } from "react-native";
+LogBox.ignoreLogs(["Asyncstorage: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 export default function App() {
   let [fontsLoaded] = useFonts({
