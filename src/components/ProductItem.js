@@ -33,7 +33,13 @@ const ProductItem = ({ item = {}, index = 0, width }) => {
           flexDirection: "column",
         }}
       >
-        <Text style={{ fontFamily: "Montserrat-SemiBold", fontSize: 17 }}>
+        <Text
+          style={{
+            fontFamily: "Montserrat-SemiBold",
+            fontSize: 17,
+            width: width - 42 - 16 - 107 - 8,
+          }}
+        >
           {item.name}
         </Text>
         <Text

@@ -10,36 +10,34 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Profile"
-        tabBar={(props) => <CustomTabBar {...props} />}
-        screenOptions={{
-          tabBarHideOnKeyboard: true,
-        }}
-      >
-        <Tab.Screen
-          name="Search"
-          component={Search}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Bookmarks"
-          component={Bookmarks}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Schedule"
-          component={Schedule}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{ headerShown: false }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      initialRouteName="Profile"
+      tabBar={(props) => <CustomTabBar {...props} />}
+      screenOptions={{
+        tabBarHideOnKeyboard: true,
+      }}
+    >
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Bookmarks"
+        component={Bookmarks}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Schedule"
+        component={Schedule}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerShown: false }}
+      />
+    </Tab.Navigator>
   );
 };
 
