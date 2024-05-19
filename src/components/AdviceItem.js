@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Pressable, Text, useWindowDimensions, View } from "react-native";
 import InsetShadow from "react-native-inset-shadow";
 
-const AdviceItem = ({ item = {} }) => {
+const AdviceItem = ({ item = {}, onClick = () => {} }) => {
   const { width } = useWindowDimensions();
 
   return (
-    <View
+    <Pressable
+      onPress={onClick}
       style={{
         display: "flex",
         flexDirection: "row",
@@ -66,7 +67,7 @@ const AdviceItem = ({ item = {} }) => {
           </Text>
         </View>
       ))}
-    </View>
+    </Pressable>
   );
 };
 

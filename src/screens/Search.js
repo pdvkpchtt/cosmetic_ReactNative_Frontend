@@ -14,6 +14,7 @@ import { useState } from "react";
 import Modal from "react-native-modal";
 import { UniversalModal } from "../UI/UniversalModal";
 import CrossIcon from "../UI/icons/CrossIcon";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 const Search = () => {
   const { width } = useWindowDimensions();

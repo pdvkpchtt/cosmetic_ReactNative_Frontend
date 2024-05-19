@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Pressable, Text } from "react-native";
 import InsetShadow from "react-native-inset-shadow";
 import CustomButton from "./CustomButton";
+import CrossIcon2 from "./icons/CrossIcon2";
 
 const ViewOverlayBackdrop = styled.View`
   flex: 1;
@@ -14,13 +15,13 @@ const ViewOverlayBackdrop = styled.View`
 `;
 const ViewOverlayBlock = styled.View`
   width: 70%;
-  height: 50%;
+  height: 51.5%;
   background: #fff;
   border-radius: 13px;
 `;
 const ViewContentBlock = styled.View`
   flex: 1;
-  padding: 21px 40px;
+  padding: 0 0 21px 0;
   display: flex;
   flex-direction: column;
   /* background: rgba(0, 0, 0, 0.8); */
@@ -39,6 +40,19 @@ export const UniversalModal = ({
     <ViewOverlayBackdrop>
       <ViewOverlayBlock>
         <ViewContentBlock style={{ justifyContent: "center" }}>
+          <Pressable
+            onPress={setModalState}
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              flexDirection: "row",
+              width: "100%",
+              paddingRight: 20,
+              paddingTop: 20,
+            }}
+          >
+            <CrossIcon2 />
+          </Pressable>
           <Text
             style={{
               fontFamily: "Montserrat-Regular",
@@ -61,6 +75,7 @@ export const UniversalModal = ({
                 alignItems: "center",
                 gap: 19,
                 paddingVertical: 6,
+                marginHorizontal: 40,
               }}
               onPress={() => setFilter(i)}
             >
@@ -90,7 +105,7 @@ export const UniversalModal = ({
 
           <CustomButton
             title="Выбрать"
-            moreStyle={{ marginTop: 42 }}
+            moreStyle={{ marginTop: 42, marginHorizontal: 40 }}
             onClick={setModalState}
           />
           {/* 

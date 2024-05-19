@@ -1,7 +1,16 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Heart2Icon from "../UI/icons/Heart2Icon";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { favoriteSlice } from "../store/favoriteSlice";
 
 const ProductItem = ({ item = {}, index = 0, width }) => {
+  const [products] = useSelector(
+    (state) => [state.favorite.products],
+    shallowEqual
+  );
+  const dispatch = useDispatch();
+
   return (
     <LinearGradient
       style={{
@@ -64,6 +73,26 @@ const ProductItem = ({ item = {}, index = 0, width }) => {
         >
           {item.description}
         </Text>
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Pressable
+            onPress={() => dispatch(favoriteSlice.actions.addCartItem(item))}
+          >
+            <Heart2Icon
+              fill={
+                products.find((i) => i.name === item.name)
+                  ? "#dd2e44"
+                  : "#8f8f8f"
+              }
+            />
+          </Pressable>
+        </View>
       </View>
     </LinearGradient>
   );
