@@ -84,7 +84,7 @@ export const AdviceModal = ({ setModalState = () => {} }) => {
               повышая эффективность процедуры.
             </Text>
           </ScrollView>
-          <CustomButton title="Выбрать" onClick={setModalState} />
+          <CustomButton title="Готово" onClick={setModalState} />
         </ViewContentBlock>
       </ViewOverlayBlock>
     </ViewOverlayBackdrop>

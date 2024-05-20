@@ -1,7 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import ElementSvg from "../UI/icons/ElementSvg";
+import { products } from "../client_data/products";
+import ProductItemSmall from "./ProductItemSmall";
 
 const ScheduleItem = ({ item = "", random = 0 }) => {
+  function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  let firstRand = randomIntFromInterval(0, 6);
+  let secRand = randomIntFromInterval(0, 5);
+  let thirdRand = secRand + 1;
+
   return (
     <View
       style={{
@@ -17,7 +27,7 @@ const ScheduleItem = ({ item = "", random = 0 }) => {
         style={{
           display: "flex",
           flexDirection: "row",
-          gap: 0,
+          gap: 10,
           width: "100%",
           height: 44,
           alignItems: "center",
@@ -27,19 +37,21 @@ const ScheduleItem = ({ item = "", random = 0 }) => {
           style={{
             fontFamily: "Montserrat-SemiBold",
             fontSize: 14,
-            marginRight: 7,
+            width: 36,
+            marginRight: 3,
           }}
         >
           {item}
         </Text>
 
         {[...Array(random)].map((i) => {
-          if (Math.random() < 0.8) return <ElementSvg />;
+          if (Math.random() < 0.8)
+            return <ProductItemSmall item={products[firstRand]} />;
           else
             return (
               <>
-                <ElementSvg />
-                <ElementSvg />
+                <ProductItemSmall item={products[secRand]} />
+                <ProductItemSmall item={products[thirdRand]} />
               </>
             );
         })}

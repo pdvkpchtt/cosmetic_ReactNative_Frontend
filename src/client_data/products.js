@@ -36,7 +36,7 @@ export const products = [
   },
   {
     img: require("../../assets/prod6.png"),
-    name: "Pixi Glow Tonic",
+    name: "Dr. Ceuracle, Mellight Boosting Essence",
     type: "Эссенция",
     description:
       "Осветляющиая пузырьковая эссенция для лица с витамином С направлена на антиоксидантное действие, увлажнение кожи и выравнивание тона.",

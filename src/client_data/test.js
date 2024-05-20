@@ -54,13 +54,7 @@ export const test = [
   {
     id: 5,
     question: "Знакомы ли Вашей коже ощущения покалывания, покраснения?",
-    answers: [
-      { label: "нет" },
-      { label: "иногда" },
-      { label: "да" },
-      { label: "Ответ" },
-      { label: "Ответ" },
-    ],
+    answers: [{ label: "нет" }, { label: "иногда" }, { label: "да" }],
   },
   {
     id: 6,
