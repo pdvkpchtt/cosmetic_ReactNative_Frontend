@@ -37,7 +37,6 @@ const ScheduleItem = ({ item = "", random = 0 }) => {
           style={{
             fontFamily: "Montserrat-SemiBold",
             fontSize: 14,
-            width: 36,
             marginRight: 3,
           }}
         >
